@@ -46,7 +46,6 @@ import (
 	"github.com/cretz/gopaque/gopaque"
 	"github.com/fatih/color"
 	"github.com/lucas-clemente/quic-go"
-	"github.com/lucas-clemente/quic-go/h2quic"
 	"github.com/satori/go.uuid"
 	"golang.org/x/crypto/pbkdf2"
 	"golang.org/x/net/http2"
