@@ -194,16 +194,6 @@ func New(iface string, port int, protocol string, key string, certificate string
 
 	if s.Protocol == "h2" {
 		s.Server = srv
-	} else if s.Protocol == "hq" {
-		s.Server = &h2quic.Server{
-			Server: srv,
-			QuicConfig: &quic.Config{
-				KeepAlive:                   false,
-				IdleTimeout:                 168 * time.Hour,
-				RequestConnectionIDOmission: false,
-			},
-		}
-
 	} else {
 		return s, fmt.Errorf("%s is an invalid server protocol", s.Protocol)
 	}
@@ -230,20 +220,6 @@ func (s *Server) Run() error {
 			err := server.Close()
 			if err != nil {
 				m := fmt.Sprintf("There was an error starting the %s server:\r\n%s", s.Protocol, err.Error())
-				logging.Server(m)
-				message("warn", m)
-				return
-			}
-		}()
-		go logging.Server(server.ListenAndServeTLS(s.Certificate, s.Key).Error())
-		return nil
-	} else if s.Protocol == "hq" {
-		server := s.Server.(*h2quic.Server)
-
-		defer func() {
-			err := server.Close()
-			if err != nil {
-				m := fmt.Sprintf("There was an error starting the hq server:\r\n%s", err.Error())
 				logging.Server(m)
 				message("warn", m)
 				return
