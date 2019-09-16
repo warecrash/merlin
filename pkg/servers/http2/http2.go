@@ -38,7 +38,6 @@ import (
 	"github.com/cretz/gopaque/gopaque"
 	"github.com/fatih/color"
 	"github.com/lucas-clemente/quic-go"
-	"github.com/lucas-clemente/quic-go/h2quic"
 	"github.com/satori/go.uuid"
 	"go.dedis.ch/kyber"
 	"gopkg.in/square/go-jose.v2"
