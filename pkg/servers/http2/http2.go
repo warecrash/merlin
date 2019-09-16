@@ -37,7 +37,6 @@ import (
 	// 3rd Party
 	"github.com/cretz/gopaque/gopaque"
 	"github.com/fatih/color"
-	"github.com/lucas-clemente/quic-go"
 	"github.com/satori/go.uuid"
 	"go.dedis.ch/kyber"
 	"gopkg.in/square/go-jose.v2"
